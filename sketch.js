@@ -1,5 +1,4 @@
 
-/* @pjs preload="field.jpg","mole.png","mole2.png", "mole_hill.png", "mole_hill2.png"; */
 // declares String field_img
 var field_img;
 
@@ -104,7 +103,7 @@ function mousePressed() {
 
 
 // declares PImage image
-var image;
+var image_field_class;
 
 // declares Mole[] mole_lst
 var mole_lst;
@@ -113,11 +112,12 @@ var mole_lst;
 class Field {
     constructor(field_img, lst) {
     // creates PImage object and assigns it to image
-    //image = loadImage(field_img);
+    //image_field_class = loadImage(field_img);
     // assigns lst parameter to Field variable mole_lst
     mole_lst = lst;
     }
 }
+
 // changes the state of the Field
 function update() {
     for (var i = 0; i < mole_lst.length; ++i) {
@@ -132,7 +132,7 @@ function show() {
     // sets the background color to blue
     background(130, 200, 255);
     // displays image at 0, 0, scaling it to window width, height
-    image(image, 0, 0, width, height);
+    image(image_field_class, 0, 0, width, height);
     for (var i = 0; i < mole_lst.length; ++i) {
         // for every Mole in mole_lst
         // displays each Mole
@@ -183,7 +183,7 @@ var mallet;
 // defines nested class Mallet
 
 // declares PImage image
-var image;
+var image_mallet_class;
 
 // declares int w
 var w;
@@ -195,7 +195,7 @@ var h;
 class Mallet {
     constructor(img, sz) {
     // creates PImage object and assigns it to image
-    //image = loadImage(img);
+    //image_mallet_class = loadImage(img);
     // assigns sz to Mallet variable w
     w = sz;
     // calculates the Mallet's height and assigns it to h
@@ -203,38 +203,37 @@ class Mallet {
     }
 }
 
-
 // Mole's constructor
 class Mole {
-        constructor(img, img2, x, y, sz, scl) {
-        // creates PImage object and assigns it to mole_img
-        //mole_img = loadImage(img);
-        // creates PImage object and assigns it to mole_img
-        //hill_img = loadImage(img2);
-        // creates PVector with x, y parameters and assigns it to pos
-        pos = new PVector(x, y);
-        // calculates the Mole's size and assigns it to size
-        size = int(sz * scl);
-        // assigns scl parameter to Mole variable scale
-        scale = scl;
-        // initializes the display_timer
-        display_timer = int(random(2 * frameRate, 5 * frameRate));
-        // initializes the respawn_timer
-        respawn_timer = int(random(1 * frameRate, 3 * frameRate));
-        // creates Mallet object and assigns it to mallet
-        mallet = new Mallet("mallet.png", 90);
-        // randomly initializes alive to true or false
-        if (int(random(2)) === 0) {
-            // if random number is 0
-            // Mole is dead
-            alive = false;
-        } else {
-            // if random number is 1
-            // Mole is alive
-            alive = true;
-            // increments Score object's total_moles variable
-            ++score.total_moles;
-        }
+    constructor(img, img2, x, y, sz, scl) {
+    // creates PImage object and assigns it to mole_img
+    //mole_img = loadImage(img);
+    // creates PImage object and assigns it to mole_img
+    //hill_img = loadImage(img2);
+    // creates PVector with x, y parameters and assigns it to pos
+    pos = new PVector(x, y);
+    // calculates the Mole's size and assigns it to size
+    size = int(sz * scl);
+    // assigns scl parameter to Mole variable scale
+    scale = scl;
+    // initializes the display_timer
+    display_timer = int(random(2 * frameRate, 5 * frameRate));
+    // initializes the respawn_timer
+    respawn_timer = int(random(1 * frameRate, 3 * frameRate));
+    // creates Mallet object and assigns it to mallet
+    mallet = new Mallet("mallet.png", 90);
+    // randomly initializes alive to true or false
+    if (int(random(2)) === 0) {
+        // if random number is 0
+        // Mole is dead
+        alive = false;
+    } else {
+        // if random number is 1
+        // Mole is alive
+        alive = true;
+        // increments Score object's total_moles variable
+        ++score.total_moles;
+    }
     }
 }
 
@@ -279,7 +278,7 @@ function hit() {
         // resets the respawn_timer
         reset_respawn_timer();
         // displays mallet.image at mouseX, mouseY - mallet.h / 4, scaling it to mallet.w * scale, mallet.h * scale
-        image(mallet.image, mouseX, mouseY - mallet.h / 4, mallet.w * scale, mallet.h * scale);
+        image(mallet.image_mallet_class, mouseX, mouseY - mallet.h / 4, mallet.w * scale, mallet.h * scale);
         // adds points to score for hitting a Mole
         score.mole_hit();
         // adds points to score based on reaction time
@@ -394,7 +393,7 @@ function initializeFields() {
     num_moles = 0;
     moles = null;
     field = null;
-    image = null;
+    image_field_class = null;
     mole_lst = null;
     mole_img = null;
     hill_img = null;
@@ -405,7 +404,7 @@ function initializeFields() {
     respawn_timer = 0;
     display_timer = 0;
     mallet = null;
-    image = null;
+    image_mallet_class = null;
     w = 0;
     h = 0;
     points = 0;
@@ -418,10 +417,11 @@ function initializeFields() {
 }
 
 function preload() {
-    image = loadImage(field_img)
-    image = loadImage(img)
+// TODO: put method calls that load from files into this method
+// I found the following calls that you should move here:
+    image_field_class = loadImage(field_img)
+    image_mallet_class = loadImage(img)
     mole_img = loadImage(img)
     hill_img = loadImage(img2)
 // (note that line numbers are from your Processing code)
 }
-
