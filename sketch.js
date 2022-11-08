@@ -109,46 +109,48 @@ var image_field_class;
 var mole_lst;
 
 // constructor
-Field(field_img, lst) {
+class Field {
+
+    constructor(field_img, lst) {
     // creates PImage object and assigns it to image
     image_field_class = loadImage(field_img);
     // assigns lst parameter to Field variable mole_lst
     mole_lst = lst;
 }
 
-// changes the state of the Field
-function update() {
-    for (var i = 0; i < mole_lst.length; ++i) {
-        // for every Mole in mole_lst
-        // changes the state of each Mole
-        mole_lst[i].update();
+    // changes the state of the Field
+    function update() {
+        for (var i = 0; i < mole_lst.length; ++i) {
+            // for every Mole in mole_lst
+            // changes the state of each Mole
+            mole_lst[i].update();
+        }
     }
-}
 
-// displays the field
-function show() {
-    // sets the background color to blue
-    background(130, 200, 255);
-    // displays image at 0, 0, scaling it to window width, height
-    image(image_field_class, 0, 0, width, height);
-    for (var i = 0; i < mole_lst.length; ++i) {
-        // for every Mole in mole_lst
-        // displays each Mole
-        mole_lst[i].show();
+    // displays the field
+    function show() {
+        // sets the background color to blue
+        background(130, 200, 255);
+        // displays image at 0, 0, scaling it to window width, height
+        image(image_field_class, 0, 0, width, height);
+        for (var i = 0; i < mole_lst.length; ++i) {
+            // for every Mole in mole_lst
+            // displays each Mole
+            mole_lst[i].show();
+        }
+        // displays the score
+        score.show();
     }
-    // displays the score
-    score.show();
-}
 
-// removes all Moles from the Field
-function clear() {
-    for (var i = 0; i < mole_lst.length; ++i) {
-        // for every Mole in mole_lst
-        // remove each Mole
-        mole_lst[i].hide();
-    }
+    // removes all Moles from the Field
+    function clear() {
+        for (var i = 0; i < mole_lst.length; ++i) {
+            // for every Mole in mole_lst
+            // remove each Mole
+            mole_lst[i].hide();
+        }
 }
-
+}
 
 // MOLE
 
@@ -191,18 +193,23 @@ var w;
 var h;
 
 // Mallet's constructor
-Mallet(img, sz) {
-    // creates PImage object and assigns it to image
-    image_mallet_class = loadImage(img);
-    // assigns sz to Mallet variable w
-    w = sz;
-    // calculates the Mallet's height and assigns it to h
-    h = int(sz * 1.5);
+class Mallet {
+
+    constructor(img, sz) {
+        // creates PImage object and assigns it to image
+        image_mallet_class = loadImage(img);
+        // assigns sz to Mallet variable w
+        w = sz;
+        // calculates the Mallet's height and assigns it to h
+        h = int(sz * 1.5);
+    }
 }
 
 
 // Mole's constructor
-Mole(img, img2, x, y, sz, scl) {
+class Mole {
+
+    constructor(img, img2, x, y, sz, scl) {
     // creates PImage object and assigns it to mole_img
     mole_img = loadImage(img);
     // creates PImage object and assigns it to mole_img
@@ -233,84 +240,84 @@ Mole(img, img2, x, y, sz, scl) {
     }
 }
 
-// changes the state of the Mole
-function update() {
-    if (respawn_timer == 0) {
-        // if it's time for the Mole to be respawned
-        // respawns the Mole
-        alive = true;
-        // resets the respawn_timer
-        reset_respawn_timer();
-        // resets the display_timer
-        reset_display_timer();
-        // increments the Score object's total_moles variable
-        ++score.total_moles;
+    // changes the state of the Mole
+    function update() {
+        if (respawn_timer == 0) {
+            // if it's time for the Mole to be respawned
+            // respawns the Mole
+            alive = true;
+            // resets the respawn_timer
+            reset_respawn_timer();
+            // resets the display_timer
+            reset_display_timer();
+            // increments the Score object's total_moles variable
+            ++score.total_moles;
+        }
+        // decrements the respawn_timer
+        --respawn_timer;
     }
-    // decrements the respawn_timer
-    --respawn_timer;
-}
 
-// displays the Mole
-function show() {
-    if (alive && display_timer > 0) {
-        // if Mole is alive and display_timer hasn't run out
-        // displays mole_image at pos.x, pos.y, scaling it to size, size
-        image(mole_img, pos.x, pos.y, size, size);
-        // decrements the display_timer
-        --display_timer;
-    } else {
-        // if Mole is dead or display_timer ran out
-        // displays hill_img at pos.x, pos.y, scaling it to size, size
-        image(hill_img, pos.x, pos.y, size, size);
+    // displays the Mole
+    function show() {
+        if (alive && display_timer > 0) {
+            // if Mole is alive and display_timer hasn't run out
+            // displays mole_image at pos.x, pos.y, scaling it to size, size
+            image(mole_img, pos.x, pos.y, size, size);
+            // decrements the display_timer
+            --display_timer;
+        } else {
+            // if Mole is dead or display_timer ran out
+            // displays hill_img at pos.x, pos.y, scaling it to size, size
+            image(hill_img, pos.x, pos.y, size, size);
+        }
     }
-}
 
-// called when Mole is hit
-function hit() {
-    if (alive && mouse_over()) {
-        // if Mole is alive and mouse cursor is over its hitbox
+    // called when Mole is hit
+    function hit() {
+        if (alive && mouse_over()) {
+            // if Mole is alive and mouse cursor is over its hitbox
+            // Mole is dead
+            alive = false;
+            // resets the respawn_timer
+            reset_respawn_timer();
+            // displays mallet.image at mouseX, mouseY - mallet.h / 4, scaling it to mallet.w * scale, mallet.h * scale
+            image(mallet.image_mallet_class, mouseX, mouseY - mallet.h / 4, mallet.w * scale, mallet.h * scale);
+            // adds points to score for hitting a Mole
+            score.mole_hit();
+            // adds points to score based on reaction time
+            score.reaction_bonus(display_timer);
+            // increments Score object's moles_hit variable
+            ++score.moles_hit;
+        }
+    }
+
+    // resets the respawn_timer
+    function reset_respawn_timer() {
+        // assigns a random number to the respawn_timer
+        respawn_timer = int(random(3 * frameRate, 5 * frameRate));
+    }
+
+    // resets the display_timer
+    function reset_display_timer() {
+        // assigns a random number to the display_timer
+        display_timer = int(random(2 * frameRate, 4 * frameRate));
+    }
+
+    // removes the Mole
+    function hide() {
         // Mole is dead
         alive = false;
-        // resets the respawn_timer
-        reset_respawn_timer();
-        // displays mallet.image at mouseX, mouseY - mallet.h / 4, scaling it to mallet.w * scale, mallet.h * scale
-        image(mallet.image_mallet_class, mouseX, mouseY - mallet.h / 4, mallet.w * scale, mallet.h * scale);
-        // adds points to score for hitting a Mole
-        score.mole_hit();
-        // adds points to score based on reaction time
-        score.reaction_bonus(display_timer);
-        // increments Score object's moles_hit variable
-        ++score.moles_hit;
+    }
+
+    // determines whether or not the mouse cursor is over the Mole
+    function mouse_over() {
+        // if mouse cursor is over the Mole's hitbox, returns true
+        if (mouseX > pos.x && mouseX < pos.x + size && mouseY > pos.y && mouseY < pos.y + size)
+            return true;
+        // if mouse cursor is not over the Mole's hitbox, returns false
+        return false;
     }
 }
-
-// resets the respawn_timer
-function reset_respawn_timer() {
-    // assigns a random number to the respawn_timer
-    respawn_timer = int(random(3 * frameRate, 5 * frameRate));
-}
-
-// resets the display_timer
-function reset_display_timer() {
-    // assigns a random number to the display_timer
-    display_timer = int(random(2 * frameRate, 4 * frameRate));
-}
-
-// removes the Mole
-function hide() {
-    // Mole is dead
-    alive = false;
-}
-
-// determines whether or not the mouse cursor is over the Mole
-function mouse_over() {
-    // if mouse cursor is over the Mole's hitbox, returns true
-    if (mouseX > pos.x && mouseX < pos.x + size && mouseY > pos.y && mouseY < pos.y + size)
-        return true;
-    // if mouse cursor is not over the Mole's hitbox, returns false
-    return false;
-}
-
 
 
 // declares and initializes int points to 0
