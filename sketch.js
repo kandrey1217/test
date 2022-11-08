@@ -38,15 +38,15 @@ function setup() {
     // sets the window size to 1100 by 650
     createCanvas(1100, 650);
     // initializes field_img
-    field_img = "field.jpg";
+    field_img = "data/field.jpg";
     // initializes mole_img
-    mole_img = "mole.png";
+    mole_img = "data/mole.png";
     // initializes mole_img2
-    mole_img2 = "mole2.png";
+    mole_img2 = "data/mole2.png";
     // initializes hill_img
-    hill_img = "mole_hill.png";
+    hill_img = "data/mole_hill.png";
     // initializes hill_img2
-    hill_img2 = "mole_hill2.png";
+    hill_img2 = "data/mole_hill2.png";
     // sets game_time to 30 seconds
     game_time = 30;
     // creates a Score object and assigns it to score
@@ -218,7 +218,7 @@ Mole(img, img2, x, y, sz, scl) {
     // initializes the respawn_timer
     respawn_timer = int(random(1 * frameRate, 3 * frameRate));
     // creates Mallet object and assigns it to mallet
-    mallet = new Mallet("mallet.png", 90);
+    mallet = new Mallet("data/mallet.png", 90);
     // randomly initializes alive to true or false
     if (int(random(2)) == 0) {
         // if random number is 0
