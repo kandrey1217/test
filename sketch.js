@@ -30,7 +30,7 @@ function setup() {
     mole_size = 180;  //sets mole_size to 180 pixels
     num_moles = 6;  //sets num_moles to 6
 
-    moles = new Mole[num_moles];  //creates an array of Mole objects and assigns it to moles
+    //moles = new Mole[num_moles];  //creates an array of Mole objects and assigns it to moles
 
     //initializes the num_moles Mole objects
     moles[0] = new Mole(mole_img, hill_img, 230, 325, mole_size, 1);
