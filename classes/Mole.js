@@ -12,7 +12,9 @@ class Mole {
     constructor(img, img2, x, y, sz, scl) {
         //this.mole_img = loadImage(img);  //creates PImage object and assigns it to mole_img
         //this.hill_img = loadImage(img2);  //creates PImage object and assigns it to mole_img
-        this.pos = new PVector(x, y);  //creates PVector with x, y parameters and assigns it to pos
+        //this.pos = new PVector(x, y);  //creates PVector with x, y parameters and assigns it to pos
+        this.x = x;
+        this.y = y;
         this.size = int(sz * scl);  //calculates the Mole's size and assigns it to size
         this.scale = scl;  //assigns scl parameter to Mole variable scale
 
@@ -45,11 +47,11 @@ class Mole {
     //displays the Mole
     show() {
         if (this.alive && this.display_timer > 0) {  //if Mole is alive and display_timer hasn't run out
-            image(mole_img, pos.x, pos.y, this.size, this.size);  //displays mole_image at pos.x, pos.y, scaling it to size, size
+            image(mole_img, this.x, this.y, this.size, this.size);  //displays mole_image at pos.x, pos.y, scaling it to size, size
             --this.display_timer;  //decrements the display_timer
         }
         else {  //if Mole is dead or display_timer ran out
-            image(hill_img, pos.x, pos.y, this.size, this.size);  //displays hill_img at pos.x, pos.y, scaling it to size, size
+            image(hill_img, this.x, this.y, this.size, this.size);  //displays hill_img at pos.x, pos.y, scaling it to size, size
         }
     }
 
@@ -89,8 +91,8 @@ class Mole {
     //determines whether or not the mouse cursor is over the Mole
     mouse_over() {
         //if mouse cursor is over the Mole's hitbox, returns true
-        if (mouseX > pos.x && mouseX < pos.x + this.size &&
-            mouseY > pos.y && mouseY < pos.y + this.size)
+        if (mouseX > this.x && mouseX < this.x + this.size &&
+            mouseY > this.y && mouseY < this.y + this.size)
             return true;
         //if mouse cursor is not over the Mole's hitbox, returns false
         return false;
