@@ -15,7 +15,7 @@ class Field {
     //displays the field
     show() {
         background(130, 200, 255);  //sets the background color to blue
-        image(field_image, 0, 0, width, height);  //displays image at 0, 0, scaling it to window width, height
+        image(field_img, 0, 0, width, height);  //displays image at 0, 0, scaling it to window width, height
 
         for (let i = 0; i < this.mole_lst.length; ++i) {  //for every Mole in mole_lst
             this.mole_lst[i].show();  //displays each Mole
