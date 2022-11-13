@@ -37,8 +37,8 @@ class Mole {
     update() {
         if (this.respawn_timer == 0) {  //if it's time for the Mole to be respawned
             this.alive = true;  //respawns the Mole
-            reset_respawn_timer();  //resets the respawn_timer
-            reset_display_timer();  //resets the display_timer
+            this.reset_respawn_timer();  //resets the respawn_timer
+            this.reset_display_timer();  //resets the display_timer
             ++score.total_moles;  //increments the Score object's total_moles variable
         }
         --this.respawn_timer;  //decrements the respawn_timer
@@ -57,9 +57,9 @@ class Mole {
 
     //called when Mole is hit
     hit() {
-        if (this.alive && mouse_over()) {  //if Mole is alive and mouse cursor is over its hitbox
+        if (this.alive && this.mouse_over()) {  //if Mole is alive and mouse cursor is over its hitbox
             this.alive = false;  //Mole is dead
-            reset_respawn_timer();  //resets the respawn_timer
+            this.reset_respawn_timer();  //resets the respawn_timer
 
             //displays mallet.image at mouseX, mouseY - mallet.h / 4, scaling it to mallet.w * scale, mallet.h * scale
             image(mallet_img, mouseX, mouseY - mallet.h / 4,

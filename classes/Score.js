@@ -14,7 +14,7 @@ class Score {
     //displays the Score
     show() {
         if (millis() >= game_time * 1000) {  //if the game is over
-            result();  //calculate the final score
+            this.result();  //calculate the final score
         }
     
         //displays score text on screen

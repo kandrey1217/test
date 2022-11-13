@@ -7,7 +7,7 @@ class Field {
 
     //changes the state of the Field
     update() {
-        for (i = 0; i < this.mole_lst.length; ++i) {  //for every Mole in mole_lst
+        for (let i = 0; i < this.mole_lst.length; ++i) {  //for every Mole in mole_lst
             this.mole_lst[i].update();  //changes the state of each Mole
         }
     }
@@ -17,7 +17,7 @@ class Field {
         background(130, 200, 255);  //sets the background color to blue
         image(field_image, 0, 0, width, height);  //displays image at 0, 0, scaling it to window width, height
 
-        for (i = 0; i < this.mole_lst.length; ++i) {  //for every Mole in mole_lst
+        for (let i = 0; i < this.mole_lst.length; ++i) {  //for every Mole in mole_lst
             this.mole_lst[i].show();  //displays each Mole
         }
         score.show();  //displays the score
@@ -25,7 +25,7 @@ class Field {
 
     //removes all Moles from the Field
     clear() {
-        for (i = 0; i < this.mole_lst.length; ++i) {  //for every Mole in mole_lst
+        for (let i = 0; i < this.mole_lst.length; ++i) {  //for every Mole in mole_lst
             this.mole_lst[i].hide();  //remove each Mole
         }
     }

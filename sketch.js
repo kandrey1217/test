@@ -66,7 +66,7 @@ function draw() {
 
 //called when a mouse key has been pressed
 function mousePressed() {
-    for (i = 0; i < moles.length; ++i) {  //for every Mole in the moles array
+    for (let i = 0; i < moles.length; ++i) {  //for every Mole in the moles array
         moles[i].hit();  //calls the Mole's hit() method
     }
 }
