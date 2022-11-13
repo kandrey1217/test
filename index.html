@@ -14,24 +14,30 @@
 	<script src="p5.js"></script>
 
 	<!--loads in prereq classes-->
-	<script src="./classes/Mole.js"></script>
+	<!--<script src="./classes/Mole.js"></script>
 	<script src="./classes/Field.js"></script>
 	<script src="./classes/Score.js"></script>
 
-	<script src="sketch.js"></script>
+	<script src="sketch.js"></script>-->
 
 
-	<!--<script>
+	<script>
+		let img;
+
 		function setup(){
-			createCanvas(500, 500);
-			background(64);
+			createCanvas(1000, 800);
+			background(0);
 		}
 
 		function draw(){
 			fill(255);
 			ellipse(mouseX, mouseY, 20, 20);
+			image(img);
 		}
-	</script>-->
+		function preload() {
+            img = loadImage("./images/mole.png");
+        }
+	</script>
 
 </BODY>
 </HTML>
