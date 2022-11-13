@@ -18,11 +18,11 @@ let field;  //declares Field field
 function setup() {
     size(1100, 650);  //sets the window size to 1100 by 650
 
-    field_img = "field.jpg";  //initializes field_img
-    mole_img = "mole.png";  //initializes mole_img
-    mole_img2 = "mole2.png";  //initializes mole_img2
-    hill_img = "mole_hill.png";  //initializes hill_img
-    hill_img2 = "mole_hill2.png";  //initializes hill_img2
+    //field_img = "field.jpg";  //initializes field_img
+    //mole_img = "mole.png";  //initializes mole_img
+    //mole_img2 = "mole2.png";  //initializes mole_img2
+    //hill_img = "mole_hill.png";  //initializes hill_img
+    //hill_img2 = "mole_hill2.png";  //initializes hill_img2
 
     game_time = 30;  //sets game_time to 30 seconds
     score = new Score();  //creates a Score object and assigns it to score
@@ -68,4 +68,13 @@ function mousePressed() {
     for (i = 0; i < moles.length; ++i) {  //for every Mole in the moles array
         moles[i].hit();  //calls the Mole's hit() method
     }
+}
+
+
+function preload() {
+    field_img = loadImage("./images/field.jpg");
+    mole_img = loadImage("./images/mole.png");
+    mole_img2 = loadImage("./images/mole2.png");
+    hill_img = loadImage("./images/mole_hill.png");
+    hill_img2 = loadImage("./images/mole_hill2.png");
 }
