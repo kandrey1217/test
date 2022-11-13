@@ -18,7 +18,6 @@ let field;  //declares Field field
 //called once at the start of the program
 function setup() {
     createCanvas(1100, 650);  //sets the window size to 1100 by 650
-    background(0);
     //field_img = "field.jpg";  //initializes field_img
     //mole_img = "mole.png";  //initializes mole_img
     //mole_img2 = "mole2.png";  //initializes mole_img2
