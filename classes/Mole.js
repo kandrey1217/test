@@ -1,7 +1,7 @@
 class Mallet {
     //Mallet's constructor
     constructor(img, sz) {
-        this.image_mallet_class = loadImage(img);  //creates PImage object and assigns it to image
+        /*this.image_mallet_class = loadImage(img);*/  //creates PImage object and assigns it to image
         this.w = sz;  //assigns sz to Mallet variable w
         this.h = int(sz * 1.5);  //calculates the Mallet's height and assigns it to h
     }
@@ -10,8 +10,8 @@ class Mallet {
 class Mole {
     //Mole's constructor
     constructor(img, img2, x, y, sz, scl) {
-        this.mole_img = loadImage(img);  //creates PImage object and assigns it to mole_img
-        this.hill_img = loadImage(img2);  //creates PImage object and assigns it to mole_img
+        //this.mole_img = loadImage(img);  //creates PImage object and assigns it to mole_img
+        //this.hill_img = loadImage(img2);  //creates PImage object and assigns it to mole_img
         this.pos = new PVector(x, y);  //creates PVector with x, y parameters and assigns it to pos
         this.size = int(sz * scl);  //calculates the Mole's size and assigns it to size
         this.scale = scl;  //assigns scl parameter to Mole variable scale
@@ -45,11 +45,11 @@ class Mole {
     //displays the Mole
     show() {
         if (this.alive && this.display_timer > 0) {  //if Mole is alive and display_timer hasn't run out
-            image(this.mole_img, pos.x, pos.y, this.size, this.size);  //displays mole_image at pos.x, pos.y, scaling it to size, size
+            image(mole_img, pos.x, pos.y, this.size, this.size);  //displays mole_image at pos.x, pos.y, scaling it to size, size
             --this.display_timer;  //decrements the display_timer
         }
         else {  //if Mole is dead or display_timer ran out
-            image(this.hill_img, pos.x, pos.y, this.size, this.size);  //displays hill_img at pos.x, pos.y, scaling it to size, size
+            image(hill_img, pos.x, pos.y, this.size, this.size);  //displays hill_img at pos.x, pos.y, scaling it to size, size
         }
     }
 
@@ -60,7 +60,7 @@ class Mole {
             reset_respawn_timer();  //resets the respawn_timer
 
             //displays mallet.image at mouseX, mouseY - mallet.h / 4, scaling it to mallet.w * scale, mallet.h * scale
-            image(mallet.image_mallet_class, mouseX, mouseY - mallet.h / 4,
+            image(mallet_img, mouseX, mouseY - mallet.h / 4,
                 mallet.w * this.scale, mallet.h * this.scale);
 
             score.mole_hit();  //adds points to score for hitting a Mole

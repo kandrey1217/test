@@ -3,6 +3,7 @@ let mole_img;  //declares String mole_img
 let mole_img2;  //declares String mole_img2
 let hill_img;  //declares String hill_img
 let hill_img2;  //declares String hill_img2
+let mallet_img;
 
 let game_time;  //declares int game_time
 let score;  //declares Score score
@@ -77,4 +78,5 @@ function preload() {
     mole_img2 = loadImage("./images/mole2.png");
     hill_img = loadImage("./images/mole_hill.png");
     hill_img2 = loadImage("./images/mole_hill2.png");
+    mallet_img = loadImage("./images/mallet.png");
 }
